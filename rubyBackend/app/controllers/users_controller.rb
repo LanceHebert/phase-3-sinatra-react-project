@@ -17,16 +17,28 @@ class UsersController < ApplicationController
     post '/users/:name' do        
             # find the user,once found,create Job.create(pass the params here)
             # User.find(x).Job.create(params here)
-            
-            User.find_by(name: params[:name]).jobs.create(
-                company_name: (params[:company_name]),
-                job_title: (params[:job_title]),
-                location: (params[:location]),
-                employment_type: (params[:employment_type]),
-                work_site: (params[:work_site]),
-                job_url: (params[:job_url]),
-                salary: (params[:salary]),
+            formField= params[:formField]
+            lang = params[:lang]
+           
+            user = User.find_by(name: params[:name])
+            job= user.jobs.create(
+                company_name: (formField[:company_name]),
+                job_title: (formField[:job_title]),
+                location: (formField[:location]),
+                employment_type: (formField[:employment_type]),
+                work_site: (formField[:work_site]),
+                job_url: (formField[:job_url]),
+                salary: (formField[:salary]),
             )
+            lance = lang[:language].split(',').each do |single|
+                job.languages.create(language: single) 
+            end
+           
+            
+            # .each(single=> job.languages.create(language: single))
+
+        
+            
         
     end
 

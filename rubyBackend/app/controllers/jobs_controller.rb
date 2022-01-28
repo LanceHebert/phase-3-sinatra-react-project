@@ -8,7 +8,6 @@ class JobsController < ApplicationController
     #     job = Job.find(params[:id])
     #     job.to_json
     # end
-
   
     post '/jobs' do        
         Job.create(

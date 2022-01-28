@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 2022_01_26_182424) do
   create_table "joblangs", force: :cascade do |t|
     t.integer "job_id"
     t.integer "language_id"
+    t.integer "user_id"
   end
 
   create_table "jobs", force: :cascade do |t|
